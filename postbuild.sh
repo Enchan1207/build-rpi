@@ -7,4 +7,5 @@
 ls -1a /dist/build | sed "/^host-/d" | sed "/^\./d" | xargs -i rm -rf "/dist/build/{}"
 rm -rf /dist/images /dist/target
 
-ls -la /dist/build
+# 残ったディレクトリを一覧表示
+tree -L 2 /dist
