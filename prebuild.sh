@@ -5,4 +5,4 @@
 cd /buildroot
 
 # Pythonパッケージの追加
-yes | ./utils/scanpypi psycopg2 usb python-usbtmc sqlalchemy
+# yes | ./utils/scanpypi psycopg2 usb python-usbtmc sqlalchemy

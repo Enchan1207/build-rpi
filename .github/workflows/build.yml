@@ -28,12 +28,9 @@ jobs:
           output_path: ./sdcard.img
           rootfs_overlay_dir: ./rfs
 
-      - run: ls -la .; pwd
-
-      # リリースドラフトを作成し、ビルドしたイメージを同梱
-      - name: draft release
-        uses: softprops/action-gh-release@v1
+      # ビルドしたイメージをアーティファクトとして保存
+      - name: upload image as artifact
+        uses: actions/upload-artifact@v3
         with:
-          name: release draft
-          draft: true
-          files: ./sdcard.img
+          name: sdcard.img
+          path: sdcard.img
