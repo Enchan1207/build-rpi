@@ -25,8 +25,10 @@ jobs:
           config_file: buildroot.config
           pre_build_script: prebuild.sh
           post_build_script: postbuild.sh
-          output_path: sdcard.img
+          output_path: ./sdcard.img
           rootfs_overlay_dir: rfs
+
+      - run: ls -la .
 
       # リリースドラフトを作成し、ビルドしたイメージを同梱
       - name: draft release
