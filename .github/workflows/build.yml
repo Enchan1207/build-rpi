@@ -26,9 +26,7 @@ jobs:
           pre_build_script: prebuild.sh
           post_build_script: postbuild.sh
           output_path: ./sdcard.img
-          rootfs_overlay_dir: rfs
-
-      - run: ls -la .
+          rootfs_overlay_dir: ./rfs
 
       # リリースドラフトを作成し、ビルドしたイメージを同梱
       - name: draft release
@@ -36,4 +34,4 @@ jobs:
         with:
           name: release draft
           draft: true
-          files: sdcard.img
+          files: ./sdcard.img
