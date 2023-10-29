@@ -12,12 +12,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # ルートFSオーバレイディレクトリの構成
-      - name: configure rootfs overlay directory
-        run: |
-          mkdir rfs && cd rfs
-          wget example.com
-
       # Raspberry Pi イメージのビルド
       - uses: Enchan1207/rpi-buildroot@master
         with:
