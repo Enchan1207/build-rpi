@@ -13,7 +13,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - run: |
-          ls -la /home/runner/work/_actions
+          ls -la /home/runner/work/_actions/Enchan1207/gha-sandbox
 
       - uses: Enchan1207/gha-sandbox@master
         with:
