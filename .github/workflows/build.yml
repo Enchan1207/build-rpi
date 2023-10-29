@@ -12,9 +12,19 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # Raspberry Pi イメージのビルド
       - uses: Enchan1207/gha-sandbox@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           config_file: buildroot.config
           pre_build_script: prebuild.sh
           post_build_script: postbuild.sh
+          output_path: sdcard.img
+
+      # リリースドラフトを作成し、ビルドしたイメージを同梱
+      - name: draft release
+        uses: softprops/action-gh-release@v1
+        with:
+          name: release draft
+          draft: true
+          files: sdcard.img
