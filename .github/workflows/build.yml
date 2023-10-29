@@ -12,6 +12,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - run: |
+          ls -la /home/runner/work/
+
       - uses: Enchan1207/gha-sandbox@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
