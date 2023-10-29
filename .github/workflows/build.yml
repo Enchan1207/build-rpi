@@ -18,6 +18,9 @@ jobs:
           mkdir rfs && cd rfs
           wget example.com
 
+      - name: install additional packages
+        run: sudo apt-get install tree
+        
       # Raspberry Pi イメージのビルド
       - uses: Enchan1207/rpi-buildroot@master
         with:
