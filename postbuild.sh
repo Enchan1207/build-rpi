@@ -8,4 +8,5 @@ ls -1a /dist/build | sed "/^host-/d" | sed "/^\./d" | xargs -i rm -rf "/dist/bui
 rm -rf /dist/images /dist/target
 
 # 残ったディレクトリを一覧表示
+apt-get -y install tree
 tree -L 2 /dist
