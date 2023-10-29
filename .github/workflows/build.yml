@@ -1,0 +1,18 @@
+#
+# 自分自身をアクションとして呼び出す
+#
+name: build
+
+on: push
+
+jobs:
+  self_invocation:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: Enchan1207/gha-sandbox@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          config_file: buildroot.config
