@@ -27,7 +27,7 @@ jobs:
           buildroot_log_path: build.log
 
       # 失敗したらログのみアーティファクトに保存
-      - name: upload build log as artifact
+      - name: if build failed, upload build log as artifact
         if: failure() && steps.build_rpi_image.outcome == 'failure'
         uses: actions/upload-artifact@v3
         with:
@@ -35,7 +35,7 @@ jobs:
           path: build.log
 
       # 成功したらイメージとログをアーティファクトに保存
-      - name: upload image and log as artifact
+      - name: if build succeeded, upload image and log as artifact
         if: success() && steps.build_rpi_image.outcome == 'success'
         uses: actions/upload-artifact@v3
         with:
