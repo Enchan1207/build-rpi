@@ -5,4 +5,4 @@
 cd /buildroot
 
 # Pythonパッケージの追加
-yes | ./utils/scanpypi opencv-python usb python-usbtmc
+yes | ./utils/scanpypi usb python-usbtmc
