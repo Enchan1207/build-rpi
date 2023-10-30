@@ -19,12 +19,15 @@ jobs:
           config_file: buildroot.config
           pre_build_script: prebuild.sh
           post_build_script: postbuild.sh
-          output_path: ./sdcard.img
-          rootfs_overlay_dir: ./rfs
+          output_path: sdcard.img
+          rootfs_overlay_dir: rfs
+          buildroot_log_path: build.log
 
-      # ビルドしたイメージをアーティファクトとして保存
+      # ビルドしたイメージとビルドログをアーティファクトとして保存
       - name: upload image as artifact
         uses: actions/upload-artifact@v3
         with:
-          name: sdcard.img
-          path: sdcard.img
+          name: artifact
+          path: |
+            sdcard.img
+            build.log
