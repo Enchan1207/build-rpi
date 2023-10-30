@@ -6,14 +6,17 @@ name: build
 on: push
 
 jobs:
-  self_invocation:
+  build_rpi_image:
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v4
 
       # Raspberry Pi イメージのビルド
-      - uses: Enchan1207/rpi-buildroot@master
+      - name: build Raspberry Pi image
+        id: build_rpi_image
+        uses: Enchan1207/rpi-buildroot@master
+        continue-on-error: true
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           config_file: buildroot.config
@@ -23,11 +26,24 @@ jobs:
           rootfs_overlay_dir: rfs
           buildroot_log_path: build.log
 
-      # ビルドしたイメージとビルドログをアーティファクトとして保存
-      - name: upload image as artifact
+      # 失敗したらログのみアーティファクトに保存
+      - run: upload build log as artifact
+        if: failure() && steps.build_rpi_image.outcome == 'failure'
+        uses: actions/upload-artifact@v3
+        with:
+          name: artifact
+          path: build.log
+
+      # 成功したらイメージとログをアーティファクトに保存
+      - name: upload image and log as artifact
+        if: success() && steps.build_rpi_image.outcome == 'success'
         uses: actions/upload-artifact@v3
         with:
           name: artifact
           path: |
             sdcard.img
             build.log
+
+      # ログはののみち出力されるので、そのサマリを出力
+      - name: print build log summary
+        run: cat build.log | sed -n "/>>> /p"
