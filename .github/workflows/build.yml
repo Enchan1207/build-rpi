@@ -44,6 +44,6 @@ jobs:
             sdcard.img
             build.log
 
-      # ログはののみち出力されるので、そのサマリを出力
+      # ログはどのみち出力されるので、そのサマリを出力
       - name: print build log summary
         run: cat build.log | sed -n "/>>> /p"
